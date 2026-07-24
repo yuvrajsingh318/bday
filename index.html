@@ -39,7 +39,7 @@ body{
 }
 
 .container{
-  padding:20px;
+  padding:12px 20px 0 20px;
   position:relative;
   z-index:2;
 }
@@ -182,7 +182,7 @@ button::after{
 
 .surprise-box{
   max-width:760px;
-  margin:22px auto;
+  margin:16px auto 0 auto;
   padding:18px;
   background:rgba(255,255,255,0.6);
   backdrop-filter:blur(8px);
@@ -244,6 +244,7 @@ button::after{
 
 .flower{
   position:absolute;
+  top:100vh;
   font-size:28px;
   animation:floatFlower linear infinite;
   z-index:0;
@@ -253,7 +254,7 @@ button::after{
 
 @keyframes floatFlower{
   from{transform:translateY(0) rotate(0deg);}
-  to{transform:translateY(-110vh) rotate(360deg);}
+  to{transform:translateY(-140vh) rotate(360deg);}
 }
 
 .spark{
@@ -398,17 +399,18 @@ for(let i = 0; i < 6; i++){
   f.className = "flower";
   f.innerHTML = flowerIcons[Math.floor(Math.random() * flowerIcons.length)];
   f.style.left = Math.random() * 100 + "vw";
+  f.style.top = "100vh";
   f.style.animationDuration = (8 + Math.random() * 8) + "s";
   f.style.animationDelay = Math.random() * 5 + "s";
   document.body.appendChild(f);
 }
 
-// Balloons
 for(let i=0; i<10; i++){
   let b = document.createElement("div");
   b.className = "balloon";
   b.innerHTML = ["🎈","🎈","🎉","💖"][Math.floor(Math.random()*4)];
   b.style.left = Math.random() * 100 + "vw";
+  b.style.top = "100vh";
   b.style.animationDuration = (5 + Math.random() * 5) + "s";
   document.body.appendChild(b);
 }
