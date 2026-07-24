@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sister ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+:root{
+  --bg1:#f8d7ea;
+  --bg2:#dff5f1;
+  --bg3:#fce8c8;
+  --bg4:#d8ddff;
+  --text:#5e3b5c;
+  --card:#fffdfd;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,0.95), transparent 28%),
+    radial-gradient(circle at 90% 20%, rgba(255,255,255,0.85), transparent 25%),
+    radial-gradient(circle at 50% 100%, rgba(255,255,255,0.75), transparent 30%),
+    linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3), var(--bg4));
+  background-size:cover;
+  overflow-x:hidden;
+  overflow-y:auto;
+  text-align:center;
+  position:relative;
+  padding-bottom:40px;
+  color:var(--text);
+}
+
+.container{
+  padding:20px;
+  position:relative;
+  z-index:2;
+}
+
+.birthday-title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin:20px auto;
+}
+
+.sticker{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:88px;
+  height:88px;
+  padding:10px;
+  border-radius:22px;
+  background:transparent;
+  box-shadow:none;
+  border:none;
+  font-size:34px;
+  filter:drop-shadow(0 8px 10px rgba(106, 56, 106, 0.2));
+}
+
+.sticker-right{
+  transform:rotate(6deg);
+}
+
+h1{
+  font-size:clamp(2.3rem, 5vw, 4rem);
+  line-height:1.15;
+  color:#c14e88;
+  background:linear-gradient(135deg,#ff4d9d,#8d5bff,#ff8c42);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:glow 2s infinite alternate;
+  text-shadow:0 0 12px rgba(255,255,255,0.9);
+  font-weight:800;
+  letter-spacing:1px;
+  font-family:"Strain","Brush Script MT","Segoe Script","Lucida Handwriting",cursive;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px #ffe5f1, 0 0 20px #f5bfdc;}
+  to{text-shadow:0 0 20px #ff8dc2, 0 0 30px #ffd2e8;}
+}
+
+.collage{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:18px;
+  max-width:800px;
+  margin:25px auto;
+  position:relative;
+  z-index:2;
+}
+
+.photo-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  height:300px;
+  box-shadow:0 12px 28px rgba(110, 80, 120, 0.28);
+  cursor:pointer;
+  perspective:1000px;
+  transform-style:preserve-3d;
+  background:var(--card);
+  z-index:2;
+  transform:rotate(var(--angle, 0deg));
+}
+
+.photo-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+  pointer-events:none;
+}
+
+.photo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  opacity:1;
+  transition:opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease;
+  filter:blur(0px);
+}
+
+.photo-card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 18px 35px rgba(110, 80, 120, 0.4);
+}
+
+.photo-card:hover img{
+  transform:scale(1.05);
+}
+
+button{
+  padding:15px 35px;
+  font-size:20px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#f087be,#8da1ff);
+  color:white;
+  cursor:pointer;
+  margin-top:20px;
+  box-shadow:0 8px 20px rgba(133, 99, 173, 0.35);
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 12px 28px rgba(133, 99, 173, 0.45);
+}
+
+button::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-30%;
+  width:40%;
+  height:180%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform:rotate(12deg);
+  animation:shine 3s linear infinite;
+}
+
+@keyframes shine{
+  from{left:-35%;}
+  to{left:120%;}
+}
+
+.surprise-box{
+  max-width:760px;
+  margin:22px auto;
+  padding:18px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(8px);
+  border-radius:20px;
+  box-shadow:0 12px 26px rgba(120, 70, 120, 0.22);
+  position:relative;
+  z-index:2;
+  display:none;
+  animation:fadeIn .6s ease forwards;
+}
+
+.surprise-box.show{
+  display:block;
+}
+
+#audio-message{
+  width:100%;
+  margin-top:14px;
+  border-radius:12px;
+  outline:none;
+  display:none;
+}
+
+#audio-message.show{
+  display:block;
+}
+
+#wish{
+  font-size:24px;
+  margin-top:0;
+  color:#7b3b75;
+  font-weight:bold;
+  line-height:1.6;
+  text-shadow:0 0 10px rgba(255,255,255,0.9);
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(12px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes rise{
+  from{transform:translateY(0);}
+  to{transform:translateY(-120vh);}
+}
+
+.confetti{
+  position:absolute;
+  font-size:20px;
+  animation:fall 3s linear forwards;
+  z-index:1;
+  pointer-events:none;
+}
+
+@keyframes fall{
+  from{transform:translateY(-100px);}
+  to{transform:translateY(100vh);}
+}
+
+.flower{
+  position:absolute;
+  font-size:28px;
+  animation:floatFlower linear infinite;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.85;
+}
+
+@keyframes floatFlower{
+  from{transform:translateY(0) rotate(0deg);}
+  to{transform:translateY(-110vh) rotate(360deg);}
+}
+
+.spark{
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.95);
+  pointer-events:none;
+  z-index:0;
+  animation:pop .8s ease forwards;
+  box-shadow:0 0 12px rgba(255,255,255,0.8);
+}
+
+@keyframes pop{
+  from{transform:scale(0.2); opacity:1;}
+  to{transform:scale(1.7); opacity:0;}
+}
+
+@media (max-width: 700px){
+  .collage{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="birthday-title">
+  <h1>Happy Birthday Chota Don💖</h1>
+  <div class="sticker sticker-right">💖🌸✨</div>
+</div>
+
+<div class="collage">
+  <div class="photo-card"><img src="d1.jpg" alt="photo"></div>
+  <div class="photo-card"><img src="d2.jpg" alt="photo"></div>
+  <div class="photo-card"><img src="d3.jpg" alt="photo"></div>
+  <div class="photo-card"><img src="d4.jpg" alt="photo"></div>
+</div>
+
+<button onclick="surprise()">🎁 Open Surprise</button>
+
+<div class="surprise-box" id="surprise-box">
+  <p id="wish" class="wish-text"></p>
+  <audio id="audio-message" controls preload="auto" src="aud.mp4"></audio>
+</div>
+
+</div>
+
+<script>
+
+// 8 total images
+const slideshowImages = [
+  "d1.jpg", "d2.jpg", "d3.jpg", "d4.jpg",
+  "d5.jpg", "d6.jpg", "d7.jpg", "d8.jpg"
+];
+
+const photoImages = Array.from(document.querySelectorAll(".photo-card img"));
+
+function getFileName(src) {
+  return src.split("/").pop();
+}
+
+function shuffleArray(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+function initializeUniquePhotos() {
+  const shuffled = shuffleArray([...slideshowImages]);
+  photoImages.forEach((img, index) => {
+    img.src = shuffled[index];
+    img.dataset.current = getFileName(img.src);
+  });
+}
+
+function getNextAvailableImage(excludedSet) {
+  const available = slideshowImages.filter(name => !excludedSet.has(name));
+  return available[Math.floor(Math.random() * available.length)];
+}
+
+function changeOneRandomImage() {
+  const currentSet = new Set(photoImages.map(img => getFileName(img.src)));
+
+  const randomIndex = Math.floor(Math.random() * photoImages.length);
+  const img = photoImages[randomIndex];
+
+  const nextImage = getNextAvailableImage(currentSet);
+
+  if (!nextImage) return;
+
+  img.style.opacity = "0";
+  img.style.transform = "scale(1.08)";
+  img.style.filter = "blur(8px)";
+
+  setTimeout(() => {
+    img.src = nextImage;
+    img.dataset.current = nextImage;
+    img.style.opacity = "1";
+    img.style.transform = "scale(1)";
+    img.style.filter = "blur(0px)";
+  }, 900);
+}
+
+function startSlideshow() {
+  const delay = 3200 + Math.random() * 1800;
+  setTimeout(() => {
+    changeOneRandomImage();
+    startSlideshow();
+  }, delay);
+}
+
+// Start with unique 4 photos
+initializeUniquePhotos();
+startSlideshow();
+
+// Hover tilt effect
+document.querySelectorAll(".photo-card").forEach((card, index) => {
+  card.style.setProperty("--angle", `${(index % 2 === 0 ? -1 : 1) * 1.2}deg`);
+
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    card.style.transform =
+      `translateY(-8px) rotateX(${-y * 10}deg) rotateY(${x * 12}deg) scale(1.02) rotate(${card.style.getPropertyValue("--angle")})`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = `rotate(${card.style.getPropertyValue("--angle")})`;
+  });
+});
+
+// Floating flowers and soft emojis
+const flowerIcons = ["🌸", "🌼", "🌷", "💮", "🌻", "🦋"];
+
+for(let i = 0; i < 6; i++){
+  const f = document.createElement("div");
+  f.className = "flower";
+  f.innerHTML = flowerIcons[Math.floor(Math.random() * flowerIcons.length)];
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = (8 + Math.random() * 8) + "s";
+  f.style.animationDelay = Math.random() * 5 + "s";
+  document.body.appendChild(f);
+}
+
+// Balloons
+for(let i=0; i<10; i++){
+  let b = document.createElement("div");
+  b.className = "balloon";
+  b.innerHTML = ["🎈","🎈","🎉","💖"][Math.floor(Math.random()*4)];
+  b.style.left = Math.random() * 100 + "vw";
+  b.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(b);
+}
+
+// Interactive sparkles on mouse move
+let sparkleTimer = 0;
+document.addEventListener("mousemove", e => {
+  if (Date.now() - sparkleTimer < 60) return;
+  sparkleTimer = Date.now();
+
+  const s = document.createElement("div");
+  s.className = "spark";
+  s.style.left = e.clientX + "px";
+  s.style.top = e.clientY + "px";
+  s.style.background = ["#ffd8f0", "#ffffff", "#ffe896", "#c8d6ff"][Math.floor(Math.random() * 4)];
+  document.body.appendChild(s);
+
+  setTimeout(() => s.remove(), 800);
+});
+
+// Surprise
+function surprise(){
+  const wish = document.getElementById("wish");
+  const surpriseBox = document.getElementById("surprise-box");
+  const audio = document.getElementById("audio-message");
+
+  surpriseBox.classList.add("show");
+  audio.classList.add("show");
+
+  wish.innerHTML =
+  "💖 Happy Birthday,Sobziiieeee! Tinguuuu! Chirkut! Pikachu!<br>May your days always be filled with love, peace, laughter, and beautiful memories. You are truly special to me, and I wish you endless happiness and joy on your special day. 🎂✨💖";
+
+  if(audio){
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  }
+
+  for(let i=0; i<150; i++){
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.innerHTML = ["🎊","🎉","✨","💖","🌸"][Math.floor(Math.random()*5)];
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDelay = Math.random() + "s";
+    document.body.appendChild(c);
+  }
+}
+</script>
+
+</body>
+</html>
